@@ -2,49 +2,61 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+## Table of contents
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- [vue\_shop](#vue_shop)
+  - [Table of contents](#table-of-contents)
+  - [Overview](#overview)
+    - [Quick start](#quick-start)
+    - [Screenshot](#screenshot)
+    - [Links](#links)
+    - [Built with](#built-with)
+  - [Author](#author)
 
-## Recommended Browser Setup
+## Overview
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+### Quick start
 
-## Customize configuration
+```sh
+git clone https://github.com/GeorgStrassberger/vue_shop.git
+```
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+```sh
+cd ./vue-shop
+```
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
-
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+or
 
 ```sh
 npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### Screenshot
 
-```sh
-npm run test:unit
-```
+![Design preview](./preview.png)
 
-### Lint with [ESLint](https://eslint.org/)
+### Links
 
-```sh
-npm run lint
-```
+- GitHub Repo URL: [https://github.com/GeorgStrassberger/vue_shop](https://github.com/GeorgStrassberger/vue_shop)
+- GitHub Page URL: [https://georgstrassberger.github.io/vue_shop/](https://georgstrassberger.github.io/vue_shop/)
+
+### Built with
+
+- VUE.js
+- vite
+- bootstrap
+- @fortawesome
+
+## Author
+
+- Website - [Georg Strassberger](https://www.georg-strassberger.de)
+- Docs - [Docusaurus](https://https://docs.devops-zone.com/)
+- Frontend Mentor - [@GeorgStrassberger](https://www.frontendmentor.io/profile/GeorgStrassberger)
