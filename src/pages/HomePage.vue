@@ -1,5 +1,5 @@
 <script setup>
-import Register from '@/components/auth/Register.vue'
+import AuthRegister from '@/components/auth/AuthRegister.vue'
 import TheTwoColumnsLayout from '@/layouts/TheTwoColumnsLayout.vue'
 </script>
 
@@ -24,7 +24,7 @@ import TheTwoColumnsLayout from '@/layouts/TheTwoColumnsLayout.vue'
         </div>
       </template>
       <template #rightCol>
-        <Register />
+        <AuthRegister />
       </template>
     </TheTwoColumnsLayout>
   </div>
