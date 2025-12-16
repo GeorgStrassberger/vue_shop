@@ -1,15 +1,9 @@
 <script setup>
-import TheTwoColumnsLayout from './layouts/TheTwoColumnsLayout.vue'
+import HomePage from './pages/HomePage.vue'
 </script>
 
 <template>
-  <div class="container">
-    <TheTwoColumnsLayout
-      :leftColumnClass="'col-md-6 bg-vue'"
-      :rightColumnClass="'col-md-6 bg-vue2'"
-      :fullsize="true"
-    />
-  </div>
+  <HomePage />
 </template>
 
 <style scoped></style>
