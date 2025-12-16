@@ -3,4 +3,5 @@
 @import '/node_modules/animate.css/animate.min.css';
 @import './base.css';
 
-#app {}
+#app {
+}
