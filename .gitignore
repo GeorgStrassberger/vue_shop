@@ -37,3 +37,7 @@ __screenshots__/
 
 # MyUtils
 .template
+
+# Env
+*.env
+!example.env

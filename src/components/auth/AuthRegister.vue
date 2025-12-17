@@ -1,6 +1,8 @@
 <script>
 import { Field as VeeField, Form as VeeForm } from 'vee-validate'
 import * as yup from 'yup'
+import axios from 'axios'
+import { firebaseConfig } from '../config/firebase'
 
 export default {
   name: 'AuthRegister',
@@ -34,11 +36,30 @@ export default {
     })
     return {
       schema,
+      error: '',
     }
   },
   methods: {
     submitData(values) {
       console.log('values', values)
+      const signUpDTO = {
+        email: values.email,
+        password: values.password,
+        returnSecureToken: true,
+      }
+      console.log('signUpDTO', signUpDTO)
+      console.log('firebaseConfig', firebaseConfig)
+      axios
+        .post(
+          `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${firebaseConfig.apiKey}`,
+          signUpDTO,
+        )
+        .then((res) => console.log('response', res))
+        .catch((error) => {
+          console.log('error', error)
+          console.log('error.message', error.response.data.error.message)
+          // this.error.response.data.error.message
+        })
     },
     changeComponent(componentName) {
       this.$emit('change-component', { componentName })
