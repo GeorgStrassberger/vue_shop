@@ -1,6 +1,26 @@
-<script setup>
+<script>
 import AuthRegister from '@/components/auth/AuthRegister.vue'
+import AuthLogin from '@/components/auth/AuthLogin.vue'
 import TheTwoColumnsLayout from '@/layouts/TheTwoColumnsLayout.vue'
+
+export default {
+  name: 'HomePage',
+  components: {
+    TheTwoColumnsLayout,
+    AuthRegister,
+    AuthLogin,
+  },
+  data() {
+    return {
+      componentName: 'AuthRegister',
+    }
+  },
+  methods: {
+    changeComponent(payload) {
+      this.componentName = payload.componentName
+    },
+  },
+}
 </script>
 
 <template>
@@ -24,7 +44,13 @@ import TheTwoColumnsLayout from '@/layouts/TheTwoColumnsLayout.vue'
         </div>
       </template>
       <template #rightCol>
-        <AuthRegister />
+        <transition
+          enter-active-class="animate__animated animate__bounceInRight"
+          leave-active-class="animate__animated animate__bounceOutRight"
+          mode="out-in"
+        >
+          <component :is="componentName" @change-component="changeComponent"> </component>
+        </transition>
       </template>
     </TheTwoColumnsLayout>
   </div>

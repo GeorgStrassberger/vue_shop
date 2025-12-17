@@ -3,7 +3,7 @@ import { Field as VeeField, Form as VeeForm } from 'vee-validate'
 import * as yup from 'yup'
 
 export default {
-  name: 'AuthRegister',
+  name: 'AuthLogin',
   components: {
     VeeForm,
     VeeField,
@@ -28,9 +28,6 @@ export default {
         .required('Passwort wird benötigt')
         .trim()
         .min(6, 'Das Passwort muss mindestens 6 zeichen lang sein'),
-      confirmPassword: yup
-        .string()
-        .oneOf([yup.ref('password')], 'Passwörter stimmen nicht überein'),
     })
     return {
       schema,
@@ -50,14 +47,14 @@ export default {
 <template>
   <div>
     <div class="my-5 text-center offset-2 col-8">
-      <img class="img-fluid" src="/src/assets/welcome.svg" alt="" />
+      <img class="img-fluid" src="/src/assets/lock.svg" alt="" />
     </div>
     <div class="text-center text-vue">
-      <h2>Jetzt registrieren</h2>
+      <h2>Jetzt anmelden</h2>
       <p>
         oder
-        <a class="text-vue2" role="button" @click="changeComponent('AuthLogin')"
-          >melden Sie sich mit Ihrem Konto an</a
+        <a class="text-vue2" role="button" @click="changeComponent('AuthRegister')"
+          >erstellen Sie ein Konto.</a
         >
       </p>
     </div>
@@ -75,26 +72,10 @@ export default {
           <VeeField as="input" name="password" type="password" class="form-control" id="password" />
           <small class="text-danger" v-if="errors.password">{{ errors.password }}</small>
         </div>
-        <!-- CONFORM PASSWORD -->
-        <div class="mb-3 col-8 offset-2">
-          <label class="form-label" for="confirmPassword"
-            ><strong>Passwort wiederholen</strong></label
-          >
-          <VeeField
-            as="input"
-            name="confirmPassword"
-            type="password"
-            class="form-control"
-            id="confirmPassword"
-          />
-          <small class="text-danger" v-if="errors.confirmPassword">{{
-            errors.confirmPassword
-          }}</small>
-        </div>
         <!-- BUTTON -->
         <div class="mb-3 col-8 offset-2">
           <div class="d-grid">
-            <button class="btn btn-dark bg-vue">Registrieren</button>
+            <button class="btn btn-dark bg-vue">Einloggen</button>
           </div>
         </div>
       </div>
