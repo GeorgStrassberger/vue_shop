@@ -24,7 +24,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="overflow-hidden">
     <TheTwoColumnsLayout
       :leftColumnClass="'col-md-8 bg-vue'"
       :rightColumnClass="'col-md-4'"
