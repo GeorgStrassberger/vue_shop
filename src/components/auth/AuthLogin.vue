@@ -1,6 +1,4 @@
 <script>
-// import axios from 'axios'
-// import { firebaseConfig } from '../../config/firebase'
 import { Field as VeeField, Form as VeeForm } from 'vee-validate'
 import * as yup from 'yup'
 
@@ -61,7 +59,8 @@ export default {
           password: values.password,
         })
         .then(() => {
-          // this.changeComponent('AuthLogin')
+          // Weiterleitung
+          this.$router.push({ path: '/shop' })
         })
         .catch((err) => {
           this.error = err.message

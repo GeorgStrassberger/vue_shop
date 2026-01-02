@@ -1,13 +1,18 @@
 <script>
+import TheNavbar from '@/components/TheNavbar.vue'
+
 export default {
   name: 'TheShopLayout',
+  components: {
+    TheNavbar,
+  },
 }
 </script>
 
 <template>
   <div>
     <!-- Navbar -->
-
+    <TheNavbar></TheNavbar>
     <!-- Main -->
     <main>
       <div class="container">

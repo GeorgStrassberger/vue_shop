@@ -4,7 +4,7 @@ This template should help get you started developing with Vue 3 in Vite.
 
 ## Table of contents
 
-- [vue\_shop](#vue_shop)
+- [vue_shop](#vue_shop)
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
     - [Quick start](#quick-start)
