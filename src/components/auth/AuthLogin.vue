@@ -60,8 +60,7 @@ export default {
           email: values.email,
           password: values.password,
         })
-        .then((res) => {
-          console.log('[Login res]', res)
+        .then(() => {
           // this.changeComponent('AuthLogin')
         })
         .catch((err) => {

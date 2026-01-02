@@ -58,8 +58,7 @@ export default {
           email: values.email,
           password: values.password,
         })
-        .then((res) => {
-          console.log('[Register res]', res)
+        .then(() => {
           this.changeComponent('AuthLogin')
         })
         .catch((err) => {
