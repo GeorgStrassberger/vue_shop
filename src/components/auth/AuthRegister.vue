@@ -1,8 +1,6 @@
 <script>
 import { Field as VeeField, Form as VeeForm } from 'vee-validate'
 import * as yup from 'yup'
-import axios from 'axios'
-import { firebaseConfig } from '../config/firebase'
 
 export default {
   name: 'AuthRegister',
@@ -37,28 +35,38 @@ export default {
     return {
       schema,
       error: '',
+      isLoading: false,
     }
+  },
+  computed: {
+    errorDisplayText() {
+      if (this.error) {
+        if (this.error.includes('EMAIL_EXISTS')) {
+          return 'Die E-Mail Adresse existiert bereits.'
+        }
+        return 'Es ist ein unbekannter Fehler aufgetreten. Bitte versuchen Sie es noch einmal.'
+      }
+      return ''
+    },
   },
   methods: {
     submitData(values) {
-      console.log('values', values)
-      const signUpDTO = {
-        email: values.email,
-        password: values.password,
-        returnSecureToken: true,
-      }
-      console.log('signUpDTO', signUpDTO)
-      console.log('firebaseConfig', firebaseConfig)
-      axios
-        .post(
-          `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${firebaseConfig.apiKey}`,
-          signUpDTO,
-        )
-        .then((res) => console.log('response', res))
-        .catch((error) => {
-          console.log('error', error)
-          console.log('error.message', error.response.data.error.message)
-          // this.error.response.data.error.message
+      this.isLoading = true
+      this.error = ''
+      this.$store
+        .dispatch('signup', {
+          email: values.email,
+          password: values.password,
+        })
+        .then((res) => {
+          console.log('[Register res]', res)
+          this.changeComponent('AuthLogin')
+        })
+        .catch((err) => {
+          this.error = err.message
+        })
+        .finally(() => {
+          this.isLoading = false
         })
     },
     changeComponent(componentName) {
@@ -81,6 +89,9 @@ export default {
           >melden Sie sich mit Ihrem Konto an</a
         >
       </p>
+    </div>
+    <div class="alert alert-danger col-md-8 offset-md-2" v-if="error">
+      {{ errorDisplayText }}
     </div>
     <VeeForm @submit="submitData" :validation-schema="schema" v-slot="{ errors }">
       <div class="row needs-validation text-vue" novalidate>
@@ -115,7 +126,10 @@ export default {
         <!-- BUTTON -->
         <div class="mb-3 col-8 offset-2">
           <div class="d-grid">
-            <button class="btn btn-dark bg-vue">Registrieren</button>
+            <button class="btn btn-dark bg-vue">
+              <span v-if="!isLoading">Registrieren</span>
+              <span v-else class="spinner-border spinner-border-sm" role="status"></span>
+            </button>
           </div>
         </div>
       </div>

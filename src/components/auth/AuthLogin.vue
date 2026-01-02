@@ -1,4 +1,6 @@
 <script>
+// import axios from 'axios'
+// import { firebaseConfig } from '../../config/firebase'
 import { Field as VeeField, Form as VeeForm } from 'vee-validate'
 import * as yup from 'yup'
 
@@ -10,7 +12,7 @@ export default {
   },
   emits: {
     'change-component': (payload) => {
-      if (payload.componentName !== 'AuthLogin') {
+      if (payload.componentName !== 'AuthRegister') {
         return false
       }
       return true
@@ -31,11 +33,43 @@ export default {
     })
     return {
       schema,
+      error: '',
+      isLoading: false,
     }
+  },
+  computed: {
+    errorDisplayText() {
+      if (this.error) {
+        if (this.error.includes('INVALID_PASSWORD')) {
+          return 'Das Passwort ist nicht gültig'
+        }
+        if (this.error.includes('EMAIL_NOT_FOUND')) {
+          return 'E-Mail Adresse konnte nicht gefunden werden.'
+        }
+        return 'Es ist ein unbekannter Fehler aufgetreten. Bitte versuchen Sie es noch einmal.'
+      }
+      return ''
+    },
   },
   methods: {
     submitData(values) {
-      console.log('values', values)
+      this.isLoading = true
+      this.error = ''
+      this.$store
+        .dispatch('signin', {
+          email: values.email,
+          password: values.password,
+        })
+        .then((res) => {
+          console.log('[Login res]', res)
+          // this.changeComponent('AuthLogin')
+        })
+        .catch((err) => {
+          this.error = err.message
+        })
+        .finally(() => {
+          this.isLoading = false
+        })
     },
     changeComponent(componentName) {
       this.$emit('change-component', { componentName })
@@ -58,6 +92,9 @@ export default {
         >
       </p>
     </div>
+    <div class="alert alert-danger col-md-8 offset-md-2" v-if="error">
+      {{ errorDisplayText }}
+    </div>
     <VeeForm @submit="submitData" :validation-schema="schema" v-slot="{ errors }">
       <div class="row needs-validation text-vue" novalidate>
         <!-- EMAIL -->
@@ -75,7 +112,10 @@ export default {
         <!-- BUTTON -->
         <div class="mb-3 col-8 offset-2">
           <div class="d-grid">
-            <button class="btn btn-dark bg-vue">Einloggen</button>
+            <button class="btn btn-dark bg-vue">
+              <span v-if="!isLoading">Einloggen</span>
+              <span v-else class="spinner-border spinner-border-sm" role="status"></span>
+            </button>
           </div>
         </div>
       </div>
