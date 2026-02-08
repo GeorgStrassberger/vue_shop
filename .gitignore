@@ -37,6 +37,8 @@ __screenshots__/
 
 # MyUtils
 .template
+vuex-store.md
+pinia-store.md
 
 # Env
 *.env

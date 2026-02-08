@@ -33,8 +33,10 @@ const actions = {
     return axios
       .post(url, authDTO)
       .then((res) => {
+        // const expiresIn = 10 * 1000
         const expiresIn = Number(res.data.expiresIn) * 1000
         const expDate = new Date().getTime() + expiresIn
+
         localStorage.setItem('token', res.data.idToken)
         localStorage.setItem('userId', res.data.localId)
         localStorage.setItem('expiresIn', expDate)
@@ -100,7 +102,9 @@ const actions = {
   },
 }
 
-const getters = {}
+const getters = {
+  isAuthenticated: (state) => !!state.token,
+}
 
 const authModule = { state, mutations, actions, getters }
 
