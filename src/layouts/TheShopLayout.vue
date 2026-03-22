@@ -1,26 +1,20 @@
-<script>
-import TheNavbar from '@/components/TheNavbar.vue'
-
-export default {
-  name: 'TheShopLayout',
-  components: {
-    TheNavbar,
-  },
-}
-</script>
-
 <template>
   <div>
-    <!-- Navbar -->
-    <TheNavbar></TheNavbar>
-    <!-- Main -->
+    <TheNavbar />
     <main>
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <slot>
-              <h1>Hauptbereich</h1>
-            </slot>
+            <transition
+              enter-active-class="animate__animated animate__fadeIn"
+              leave-active-class="animate__animated animate__fadeOut"
+              mode="out-in"
+              appear
+            >
+              <div :key="$route.path">
+                <slot><h1>Hauptbereich</h1></slot>
+              </div>
+            </transition>
           </div>
         </div>
       </div>
@@ -28,4 +22,16 @@ export default {
   </div>
 </template>
 
-<style scoped></style>
+<script>
+import TheNavbar from '@/components/TheNavbar.vue'
+
+export default {
+  name: "TheShopLayout",
+  components: {
+    TheNavbar,
+  },
+}
+</script>
+
+<style scoped>
+</style>
