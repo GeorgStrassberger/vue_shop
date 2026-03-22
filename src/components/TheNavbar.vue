@@ -1,41 +1,47 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-vue navbar-dark">
     <div class="container">
-      <RouterLink to="/shop" class="navbar-brand">Der Shop</RouterLink>
+      <router-link to="/shop" class="navbar-brand">Der Shop</router-link>
+
       <ul class="navbar-nav me-auto">
         <li class="nav-item active">
-          <RouterLink to="/shop" class="nav-link">Startseite</RouterLink>
+          <router-link to="/shop" class="nav-link">Startseite</router-link>
         </li>
         <li class="nav-item">
-          <RouterLink to="/shop/create/product" class="nav-link">Neuer Artikel</RouterLink>
+          <router-link to="/shop/create/product" class="nav-link">
+            Neuer Artikel
+          </router-link>
         </li>
       </ul>
-      <button class="btn bg-vue me-3">
-        <i class="fa-solid fa-basket-shopping"></i>
-        <span>Warenkorb (10€)</span>
+
+      <button class="btn bg-vue me-3" type="button">
+        <i class="fas fa-shopping-cart"></i>
+        Warenkorb ({{ cartCount }}) - {{ cartSum.toFixed(2) }} €
       </button>
-      <button class="btn bg-vue2" @click="signout()">
-        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        <span>Logout</span>
+
+      <button class="btn bg-vue2" type="button" @click="signout()">
+        <i class="fas fa-sign-out-alt"></i> Logout
       </button>
     </div>
   </nav>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'TheNavbar',
+  computed: {
+    ...mapGetters({ cartCount: 'cartCount', cartSum: 'cartTotal' }),
+  },
   methods: {
-    async signout() {
-      try {
-        await this.$store.dispatch('signout')
-        this.$router.push('/')
-      } catch (err) {
-        console.log(err)
-      }
+    signout() {
+      this.$store.dispatch('signout')
+      this.$router.push('/')
     },
   },
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>
