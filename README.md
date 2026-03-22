@@ -1,6 +1,6 @@
 # vue_shop
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue-3-Shop auf Basis von Vite, Vue Router, Vuex und Firebase.
 
 ## Table of contents
 
@@ -22,11 +22,15 @@ git clone https://github.com/GeorgStrassberger/vue_shop.git
 ```
 
 ```sh
-cd ./vue-shop
+cd ./vue_shop
 ```
 
 ```sh
 npm install
+```
+
+```sh
+cp example.env .env
 ```
 
 ```sh
@@ -37,6 +41,10 @@ or
 
 ```sh
 npm run build
+```
+
+```sh
+npm run test:unit -- --run
 ```
 
 ### Screenshot
@@ -51,12 +59,12 @@ npm run build
 ### Built with
 
 - VUE.js
-- vite
+- Vite
 - bootstrap
 - @fortawesome
 
 ## Author
 
 - Website - [Georg Strassberger](https://www.georg-strassberger.de)
-- Docs - [Docusaurus](https://https://docs.devops-zone.com/)
+- Docs - [Docusaurus](https://docs.devops-zone.com/)
 - Frontend Mentor - [@GeorgStrassberger](https://www.frontendmentor.io/profile/GeorgStrassberger)
